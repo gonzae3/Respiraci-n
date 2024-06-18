@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Frecuencia Respiratoria</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .calculator {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            text-align: center;
+        }
+        .calculator h2 {
+            margin-bottom: 20px;
+        }
+        .calculator p, .calculator ol {
+            text-align: left;
+        }
+        .calculator input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .calculator button {
+            padding: 10px;
+            width: 100%;
+            background: #007bff;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .calculator button:hover {
+            background: #0056b3;
+        }
+        .calculator .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator">
+        <h2>Calculadora de Frecuencia Respiratoria</h2>
+        <p>Para calcular tu frecuencia respiratoria:</p>
+        <ol>
+            <li>Siéntate o acuéstate en una posición cómoda.</li>
+            <li>Cuenta el número de respiraciones que tomas en 30 segundos.</li>
+            <li>Multiplica el número de respiraciones por 2 para obtener tu frecuencia respiratoria en respiraciones por minuto.</li>
+        </ol>
+        <label for="breaths">Número de respiraciones en 30 segundos:</label>
+        <input type="number" id="breaths" placeholder="Ingresa el número de respiraciones">
+        <button onclick="calculateRespiratoryRate()">Calcular Frecuencia Respiratoria</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculateRespiratoryRate() {
+            const breaths = document.getElementById('breaths').value;
+            const respiratoryRate = breaths * 2;
+            let resultText;
+
+            if (!isNaN(respiratoryRate) && respiratoryRate > 0) {
+                if (respiratoryRate < 12) {
+                    resultText = `Tu frecuencia respiratoria es ${respiratoryRate} respiraciones por minuto. Esto se considera bradipnea (frecuencia respiratoria baja). Es recomendable consultar a un médico.`;
+                } else if (respiratoryRate >= 12 && respiratoryRate <= 20) {
+                    resultText = `Tu frecuencia respiratoria es ${respiratoryRate} respiraciones por minuto. Esto está dentro del rango normal.`;
+                } else {
+                    resultText = `Tu frecuencia respiratoria es ${respiratoryRate} respiraciones por minuto. Esto se considera taquipnea (frecuencia respiratoria alta). Es recomendable consultar a un médico.`;
+                }
+            } else {
+                resultText = `Por favor, ingresa un número válido de respiraciones.`;
+            }
+
+            document.getElementById('result').innerText = resultText;
+        }
+    </script>
+
+</body>
+</html>
